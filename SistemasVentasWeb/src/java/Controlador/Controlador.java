@@ -4,12 +4,15 @@
  */
 package Controlador;
 
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -17,36 +20,44 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class Controlador extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    Empleado em = new Empleado();
+    EmpleadoDAO edao = new EmpleadoDAO();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
-        switch (accion) {
-            case "Principal":
-                request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                break;
-            case "Producto":
-                request.getRequestDispatcher("Producto.jsp").forward(request, response);
-                break;
-            case "Cliente":
-                request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-                break;
-            case "Empleado":
-                request.getRequestDispatcher("Empleado.jsp").forward(request, response);
-                break;
-            case "NuevaVenta":
-                request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
-                break;
-            default:
-                throw new AssertionError();
+        if (menu.equals("Principal")) {
+            request.getRequestDispatcher("Principal.jsp").forward(request, response);
+        }
+        if (menu.equals("Empleado")) {
+            switch (accion) {
+                case "Listar":
+                    List lista = edao.listar();
+                    request.setAttribute("empleados", lista);
+                    break;
+                case "Agregar":
+                    
+                    break;
+                case "Editar":
+                    
+                    break;
+                case "Delete":
+                    
+                    break;
+                default:
+                    throw new AssertionError();
+            }  
+            request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+        }
+        if (menu.equals("Cliente")) {
+            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+        }
+        if (menu.equals("Producto")) {
+            request.getRequestDispatcher("Producto.jsp").forward(request, response);
+        }
+        if (menu.equals("NuevaVenta")) {
+            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }
     }
 
