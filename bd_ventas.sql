@@ -63,11 +63,13 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   PRIMARY KEY (`IdEmpleado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla bd_ventas.empleado: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bd_ventas.empleado: ~5 rows (aproximadamente)
 INSERT INTO `empleado` (`IdEmpleado`, `Dni`, `Nombres`, `Telefono`, `Estado`, `User`) VALUES
 	(1, '123', 'Pedro Hernandez', '988252459', '1', 'emp01'),
 	(2, '123', 'Roman Riquelme', '988252459', '1', 'Jo46'),
-	(3, '123', 'Palermo Suarez', '453536458', '1', 'Em22');
+	(3, '123', 'Palermo Suarez', '453536458', '1', 'Em22'),
+	(10, '1', 'Tambien actualizado', '12', '1', 'gaa'),
+	(13, '71262235', 'Andy Michael', '4', '1', 'An');
 
 -- Volcando estructura para tabla bd_ventas.producto
 CREATE TABLE IF NOT EXISTS `producto` (
